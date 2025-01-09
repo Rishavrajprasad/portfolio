@@ -13,29 +13,27 @@ export default function Typewriter({
   className = "",
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
 
-    const type = async () => {
-      for (let i = 0; i <= text.length; i++) {
-        setDisplayText(text.substring(0, i));
-        await new Promise((resolve) => setTimeout(resolve, delay));
+    const type = () => {
+      if (displayText.length < text.length) {
+        timeoutId = setTimeout(() => {
+          setDisplayText(text.slice(0, displayText.length + 1));
+          type();
+        }, delay);
       }
-      // Hide cursor after typing is complete
-      setShowCursor(false);
     };
 
     type();
 
-    return () => clearTimeout(timeout);
-  }, [text, delay]);
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [text, delay, displayText]);
 
-  return (
-    <span className={className}>
-      {displayText}
-      {showCursor && <span className="animate-blink">█</span>}
-    </span>
-  );
+  return <span className={className}>{displayText}</span>;
 }
