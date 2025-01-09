@@ -1,13 +1,10 @@
 "use client";
-import Image from "next/image";
-import ThemeToggle from "@/components/ThemeToggle";
-import MobileMenu from "@/components/MobileMenu";
+
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import { RiTerminalBoxFill } from "react-icons/ri";
 import MatrixRain from "@/components/MatrixRain";
 import Typewriter from "@/components/Typewriter";
-import SkillsTypewriter from "@/components/SkillsTypewriter";
 
 export default function Home() {
   return (
@@ -162,7 +159,7 @@ export default function Home() {
                 </p>
                 <div className="pl-4 space-y-4">
                   <p>
-                    Greetings! I'm a passionate Full Stack Developer with
+                    Greetings! I&apos;m a passionate Full Stack Developer with
                     expertise in modern web technologies.
                   </p>
                   <p>
@@ -469,7 +466,7 @@ export default function Home() {
                       <div>
                         <p className="font-bold">LinkedIn</p>
                         <p className="text-sm opacity-70 group-hover:opacity-100">
-                          Let's connect professionally
+                          Let&apos;s connect professionally
                         </p>
                       </div>
                     </a>
