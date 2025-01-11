@@ -270,6 +270,13 @@ export default function Home() {
                 ],
                 link: "https://www.kaggle.com/code/rishavrajprasad800/leaf-desease-detection",
               },
+              {
+                title: "A Multi-Vendor E-Commerce Saloon Application",
+                description:
+                  "A multi-vendor e-commerce salon application built with Flutter and Firebase that enables users to book beauty services and purchase products from multiple vendors. Features include real-time appointment scheduling, vendor management, and secure payments.",
+                tech: ["Flutter", "Firebase", "Dart", "Stripe", "Google Maps"],
+                link: "https://github.com/Rishavrajprasad/E-commerce-flutter",
+              },
             ].map((project, index) => (
               <div
                 key={index}
