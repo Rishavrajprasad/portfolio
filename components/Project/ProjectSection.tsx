@@ -90,9 +90,6 @@ export function ProjectSection() {
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
       />
-
-      {/* RIPPED / TORN PAPER BOTTOM EDGE (Image 3: opposite! tears off-white downwards at the end of section) */}
-      <TornPaperDivider position="bottom" fillClass="fill-[#faf8f5] dark:fill-[#07090e]" />
     </section>
   );
 }

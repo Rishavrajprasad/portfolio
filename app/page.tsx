@@ -3,6 +3,8 @@
 import Hero from "@/components/Hero/Hero";
 import { JourneySection } from "@/components/Journey/JourneySection";
 import { ProjectSection } from "@/components/Project/ProjectSection";
+import { SkillsSection } from "@/components/Skills/SkillsSection";
+import { ContactSection } from "@/components/Contact/ContactSection";
 
 export default function Home() {
   return (
@@ -15,6 +17,12 @@ export default function Home() {
 
       {/* 3. Selected Projects Showcase Section */}
       <ProjectSection />
+
+      {/* 4. Skills Spotlight Stage Section */}
+      <SkillsSection />
+
+      {/* 5. Contact & Connect Section */}
+      <ContactSection />
     </main>
   );
 }

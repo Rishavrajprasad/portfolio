@@ -6,6 +6,7 @@ import { HeroBackground } from "./HeroBackground";
 import { HeroTopBar } from "./HeroTopBar";
 import { HeroContent } from "./HeroContent";
 import { FloatingCard } from "./FloatingCard";
+import { FlyingBirds } from "./FlyingBirds";
 import { ScrollIndicator } from "./ScrollIndicator";
 import { FloatingNavbar } from "./FloatingNavbar";
 import { useParallax } from "./useParallax";
@@ -31,7 +32,10 @@ export default function Hero() {
         ))}
       </HeroBackground>
 
-      {/* 2. TOP BAR (Status badge & Day/Night Theme Toggle) */}
+      {/* 2. CINEMATIC SOARING BIRDS IN SKY (Light & Dark mode responsive) */}
+      <FlyingBirds />
+
+      {/* 3. TOP BAR (Status badge & Day/Night Theme Toggle) */}
       <HeroTopBar />
 
       {/* 3. HERO CONTENT & BOTTOM CONTROLS (Pass-through clicks to landscape pins) */}

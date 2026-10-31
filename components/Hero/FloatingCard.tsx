@@ -55,53 +55,29 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
   const popoverPositionClass = isAlignRight
     ? "right-0 sm:-right-8"
     : isAlignLeft
-    ? "left-0 sm:-left-8"
-    : "left-1/2 -translate-x-1/2";
+      ? "left-0 sm:-left-8"
+      : "left-1/2 -translate-x-1/2";
 
   const pointerPositionClass = isAlignRight
     ? "right-8"
     : isAlignLeft
-    ? "left-8"
-    : "left-1/2 -translate-x-1/2";
+      ? "left-8"
+      : "left-1/2 -translate-x-1/2";
 
   return (
     <div
-      className={`absolute z-20 pointer-events-auto select-none ${
-        !item.mobileVisible ? "hidden md:block" : "block"
-      }`}
+      className={`absolute z-20 pointer-events-auto select-none ${!item.mobileVisible ? "hidden md:block" : "block"
+        }`}
       style={{
         left: `${item.x}%`,
         top: `${item.y}%`,
       }}
     >
-      {/* ANCHOR WRAPPER: Origin (0,0) is centered exactly on the target dot */}
+      {/* ANCHOR WRAPPER */}
       <div className="relative flex items-center justify-center">
-        {/* TARGET PIN / RADAR BULLSEYE ON THE LANDSCAPE */}
-        <div className="absolute flex items-center justify-center pointer-events-none">
-          {/* Outermost expanding water ripple */}
-          <span
-            className="absolute w-10 h-10 rounded-full opacity-40 animate-ping"
-            style={{ backgroundColor: pulseColor }}
-          />
-          {/* Secondary glowing ambient ring */}
-          <span
-            className="absolute w-6 h-6 rounded-full border border-sky-400/50 opacity-75 animate-glow-pulse"
-          />
-          {/* Middle specular ring */}
-          <span
-            className="absolute w-4 h-4 rounded-full border border-white/80 opacity-90"
-            style={{ borderColor: pulseColor }}
-          />
-          {/* Inner solid glowing core */}
-          <span
-            className="w-2.5 h-2.5 rounded-full shadow-[0_0_12px_#0284c7] ring-2 ring-white/60"
-            style={{ backgroundColor: pulseColor, color: pulseColor }}
-          />
-        </div>
-
-        {/* FLOATING GLASS PILL (Floats directly above the landmark dot) */}
+        {/* FLOATING GLASS PILL */}
         <div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 group cursor-pointer"
+          className="relative -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
           style={{
             animation: `heroFloat ${animationDuration} ease-in-out infinite alternate`,
             animationDelay: animationDelay,
@@ -112,13 +88,13 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-sky-500/30 via-teal-400/20 to-blue-600/30 opacity-0 group-hover:opacity-100 blur-md transition-all duration-500 pointer-events-none" />
 
           {/* Pill Container */}
-          <div className="relative flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-950/75 hover:bg-slate-950/90 text-white backdrop-blur-2xl border border-white/25 hover:border-sky-400/60 shadow-[0_10px_32px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all duration-300 group-hover:scale-[1.03] group-hover:-translate-y-0.5 overflow-hidden whitespace-nowrap">
+          <div className="relative flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/85 hover:bg-white/95 dark:bg-slate-950/75 dark:hover:bg-slate-950/90 text-stone-900 dark:text-white backdrop-blur-2xl border border-stone-200/80 hover:border-sky-400/60 dark:border-white/25 dark:hover:border-sky-400/60 shadow-[0_10px_32px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_10px_32px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all duration-300 group-hover:scale-[1.03] group-hover:-translate-y-0.5 overflow-hidden whitespace-nowrap">
             {/* Shimmer Light Sweeper Animation */}
-            <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none animate-badge-shimmer" />
+            <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 dark:via-white/15 to-transparent pointer-events-none animate-badge-shimmer" />
 
             {/* Circular Logo or Icon Badge */}
             {item.logo ? (
-              <div className="relative w-6 h-6 rounded-full bg-white p-0.5 shadow-[0_2px_8px_rgba(0,0,0,0.25)] flex items-center justify-center flex-shrink-0 ring-1 ring-white/40">
+              <div className="relative w-6 h-6 rounded-full bg-white p-0.5 shadow-[0_2px_8px_rgba(0,0,0,0.25)] flex items-center justify-center flex-shrink-0 ring-1 ring-stone-200 dark:ring-white/40">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.logo}
@@ -128,7 +104,7 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
               </div>
             ) : (
               <div
-                className="relative w-6 h-6 rounded-full border border-white/20 shadow-inner flex items-center justify-center flex-shrink-0"
+                className="relative w-6 h-6 rounded-full border border-stone-200 dark:border-white/20 shadow-inner flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: `${pulseColor}33` }}
               >
                 {renderIcon()}
@@ -136,22 +112,21 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
             )}
 
             {/* Title */}
-            <span className="text-xs sm:text-sm font-bold tracking-tight text-white drop-shadow-sm">
+            <span className="text-xs sm:text-sm font-bold tracking-tight text-stone-900 dark:text-white drop-shadow-sm">
               {item.title}
             </span>
 
             {/* Subtitle / Role */}
             {item.subtitle && (
-              <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-white/80 font-normal">
-                <span className="text-sky-400/60 font-black">•</span>
+              <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-stone-600 dark:text-white/80 font-normal">
+                <span className="text-sky-600 dark:text-sky-400/60 font-black">•</span>
                 <span>{item.subtitle}</span>
               </span>
             )}
 
-            {/* Year / Value Badge */}
+            {/* Year / Value Badge (Clean badge without pulsating dot) */}
             {item.year && (
-              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-medium text-emerald-300 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 shadow-inner">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="inline-flex items-center text-[10px] sm:text-xs font-mono font-medium text-emerald-700 dark:text-emerald-300 px-2.5 py-0.5 rounded-full bg-emerald-100/90 dark:bg-emerald-500/15 border border-emerald-300/80 dark:border-emerald-400/30 shadow-inner">
                 <span>{item.year}</span>
               </span>
             )}
@@ -161,15 +136,14 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
           {/* CASE A: MULTI-PROJECTS LIST POPOVER */}
           {item.projects && item.projects.length > 0 ? (
             <div
-              className={`absolute ${popoverPositionClass} bottom-full mb-3.5 w-72 sm:w-84 max-w-[90vw] p-3.5 rounded-2xl bg-black/85 backdrop-blur-xl border border-white/20 shadow-[0_16px_40px_rgba(0,0,0,0.65)] text-left transition-all duration-300 pointer-events-auto ${
-                isOpen
+              className={`absolute ${popoverPositionClass} bottom-full mb-3.5 w-72 sm:w-84 max-w-[90vw] p-3.5 rounded-2xl bg-white/90 dark:bg-black/85 backdrop-blur-xl border border-stone-200/80 dark:border-white/20 shadow-[0_16px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.65)] text-left transition-all duration-300 pointer-events-auto ${isOpen
                   ? "opacity-100 scale-100 translate-y-0 visible"
                   : "opacity-0 scale-95 translate-y-2 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible"
-              }`}
+                }`}
             >
               {/* Header */}
-              <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
-                <span className="text-[11px] font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-stone-200/80 dark:border-white/10">
+                <span className="text-[11px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
                   <FiFolder className="w-3.5 h-3.5" />
                   Featured Projects
                 </span>
@@ -216,26 +190,25 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
 
               {/* Downward triangle arrow indicator */}
               <div
-                className={`absolute -bottom-1.5 ${pointerPositionClass} w-3 h-3 bg-black/85 border-r border-b border-white/20 rotate-45`}
+                className={`absolute -bottom-1.5 ${pointerPositionClass} w-3 h-3 bg-white/90 dark:bg-black/85 border-r border-b border-stone-200/80 dark:border-white/20 rotate-45`}
               />
             </div>
           ) : item.description ? (
             /* CASE B: COMPACT OVERVIEW POPOVER */
             <div
-              className={`absolute ${popoverPositionClass} bottom-full mb-3.5 w-80 sm:w-88 max-w-[88vw] p-4 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-white/20 shadow-[0_24px_60px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.15)] text-left transition-all duration-300 pointer-events-auto overflow-hidden ${
-                isOpen
+              className={`absolute ${popoverPositionClass} bottom-full mb-3.5 w-80 sm:w-88 max-w-[88vw] p-4 rounded-3xl bg-white/95 dark:bg-slate-950/90 backdrop-blur-2xl border border-stone-200/80 dark:border-white/20 shadow-[0_24px_60px_rgba(0,0,0,0.18),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.15)] text-left transition-all duration-300 pointer-events-auto overflow-hidden ${isOpen
                   ? "opacity-100 scale-100 translate-y-0 visible"
                   : "opacity-0 scale-95 translate-y-2 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible"
-              }`}
+                }`}
             >
               {/* Ambient radial lighting in top-right */}
               <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-br from-sky-500/15 via-transparent to-transparent rounded-tr-3xl pointer-events-none" />
 
               {/* Header */}
-              <div className="relative flex items-center justify-between gap-3 pb-3 mb-3 border-b border-white/10">
+              <div className="relative flex items-center justify-between gap-3 pb-3 mb-3 border-b border-stone-200/80 dark:border-white/10">
                 <div className="flex items-center gap-2.5">
                   {item.logo ? (
-                    <div className="w-8 h-8 rounded-xl bg-white p-1 shadow-md flex items-center justify-center flex-shrink-0 ring-1 ring-white/30">
+                    <div className="w-8 h-8 rounded-xl bg-white p-1 shadow-md flex items-center justify-center flex-shrink-0 ring-1 ring-stone-200 dark:ring-white/30">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={item.logo}
@@ -245,44 +218,43 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
                     </div>
                   ) : (
                     <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 border border-white/20 shadow-inner"
+                      className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 border border-stone-200 dark:border-white/20 shadow-inner"
                       style={{ backgroundColor: `${pulseColor}33` }}
                     >
                       {renderIcon()}
                     </div>
                   )}
                   <div>
-                    <h4 className="text-xs font-bold text-white tracking-wide flex items-center gap-1.5">
+                    <h4 className="text-xs font-bold text-stone-900 dark:text-white tracking-wide flex items-center gap-1.5">
                       <span>{item.title}</span>
-                      <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">
+                      <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 border border-sky-300 dark:border-sky-400/30">
                         {item.category}
                       </span>
                     </h4>
-                    <p className="text-[11px] text-amber-300 font-medium">
+                    <p className="text-[11px] text-amber-600 dark:text-amber-300 font-medium">
                       {item.subtitle}
                     </p>
                   </div>
                 </div>
 
-                <span className="inline-flex items-center gap-1.5 text-[9px] font-mono font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-400/30 px-2 py-0.5 rounded-full flex-shrink-0 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="inline-flex items-center text-[9px] font-mono font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-100/90 dark:bg-emerald-500/15 border border-emerald-300/80 dark:border-emerald-400/30 px-2 py-0.5 rounded-full flex-shrink-0 shadow-sm">
                   <span>{item.year || "Present"}</span>
                 </span>
               </div>
 
               {/* Short Overview Description */}
-              <p className="relative text-xs text-white/80 leading-relaxed mb-3">
+              <p className="relative text-xs text-stone-700 dark:text-white/80 leading-relaxed mb-3">
                 {item.description}
               </p>
 
               {/* Quick Tech Tags & Link */}
-              <div className="relative flex items-center justify-between pt-2.5 border-t border-white/10">
+              <div className="relative flex items-center justify-between pt-2.5 border-t border-stone-200/80 dark:border-white/10">
                 {item.skills && item.skills.length > 0 ? (
                   <div className="flex flex-wrap gap-1.5">
                     {item.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/15 border border-white/10 text-white/85 transition-colors"
+                        className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-stone-100 hover:bg-stone-200 dark:bg-white/10 dark:hover:bg-white/15 border border-stone-200/80 dark:border-white/10 text-stone-800 dark:text-white/85 transition-colors"
                       >
                         {skill}
                       </span>
@@ -295,7 +267,7 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[11px] font-bold text-sky-400 hover:text-sky-300 inline-flex items-center gap-1 transition-all duration-200 hover:translate-x-0.5 flex-shrink-0 ml-2"
+                    className="text-[11px] font-bold text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 inline-flex items-center gap-1 transition-all duration-200 hover:translate-x-0.5 flex-shrink-0 ml-2"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <span>Website</span>
@@ -306,7 +278,7 @@ export function FloatingCard({ item, index }: FloatingCardProps) {
 
               {/* Downward triangle arrow indicator */}
               <div
-                className={`absolute -bottom-1.5 ${pointerPositionClass} w-3 h-3 bg-slate-950/90 border-r border-b border-white/20 rotate-45`}
+                className={`absolute -bottom-1.5 ${pointerPositionClass} w-3 h-3 bg-white/95 dark:bg-slate-950/90 border-r border-b border-stone-200/80 dark:border-white/20 rotate-45`}
               />
             </div>
           ) : null}

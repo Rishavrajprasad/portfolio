@@ -24,8 +24,10 @@ export interface FloatingItem {
   highlights?: string[];
   skills?: string[];
   // Coordinates as exact percentages of the 1536x1024 scenic image (0-100)
-  x: number; // percentage from left
-  y: number; // percentage from top
+  x: number; // percentage from left (desktop)
+  y: number; // percentage from top (desktop)
+  mobileX?: number; // percentage from left (mobile portrait)
+  mobileY?: number; // percentage from top (mobile portrait)
   pulseColor?: string; // Hex for radar pin
   description?: string;
   link?: string;
@@ -78,20 +80,22 @@ export const HERO_CONFIG = {
       id: "infosys",
       title: "Infosys",
       subtitle: "Specialist Programmer",
-      year: "Oct 2025 – Present",
+      year: "Currently Working",
       category: "Experience",
       iconType: "briefcase",
       logo: "/infosys.jpg",
       location: "Hyderabad",
       x: 60,
       y: 64,
+      mobileX: 48,
+      mobileY: 62,
       pulseColor: "#007cc3", // Infosys brand cyan/blue
       description:
         "Specialist Programmer building enterprise React + .NET solutions and automating data workflows with Microsoft Fabric & Multi-Agent AI.",
       skills: ["React", ".NET", "Fabric", "RAG"],
       link: "https://www.infosys.com",
       alignPopover: "center",
-      mobileVisible: true,
+      mobileVisible: false,
     },
   ] as FloatingItem[],
 
@@ -100,5 +104,7 @@ export const HERO_CONFIG = {
     { label: "Home", href: "#hero", id: "home" },
     { label: "Journey", href: "#journey", id: "journey" },
     { label: "Project", href: "#project", id: "project" },
+    { label: "Skills", href: "#skills", id: "skills" },
+    { label: "Contact", href: "#contact", id: "contact" },
   ] as NavItem[],
 };

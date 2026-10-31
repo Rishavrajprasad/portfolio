@@ -2,6 +2,7 @@
 
 import React from "react";
 import { HERO_CONFIG } from "./heroConfig";
+import { PiHandWavingFill } from "react-icons/pi";
 
 interface HeroContentProps {
   fgParallaxX?: number;
@@ -21,10 +22,9 @@ export function HeroContent({
     >
       {/* 4. Top-left Introduction */}
       <div className="flex items-center gap-2 mb-2 sm:mb-3 animate-fade-in-up">
-        {/* Glowing avatar dot */}
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-60"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.7)]"></span>
+        {/* Friendly Waving Hand in Orange */}
+        <span className="inline-flex items-center justify-center animate-waving-hand text-yellow-500 drop-shadow-[0_2px_8px_rgba(249,115,22,0.6)]">
+          <PiHandWavingFill className="w-4 h-4 sm:w-5 sm:h-5" />
         </span>
 
         {/* Small greeting */}

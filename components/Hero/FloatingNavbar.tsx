@@ -14,22 +14,28 @@ export function FloatingNavbar({ className = "" }: FloatingNavbarProps) {
 
   useEffect(() => {
     const handleScroll = () => {
+      const contactSection = document.getElementById("contact");
+      const skillsSection = document.getElementById("skills");
       const projectSection = document.getElementById("project");
       const journeySection = document.getElementById("journey");
 
-      if (projectSection) {
-        const rect = projectSection.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.45) {
-          setActiveTab("project");
-          return;
-        }
+      const threshold = window.innerHeight * 0.45;
+
+      if (contactSection && contactSection.getBoundingClientRect().top <= threshold) {
+        setActiveTab("contact");
+        return;
       }
-      if (journeySection) {
-        const rect = journeySection.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.45) {
-          setActiveTab("journey");
-          return;
-        }
+      if (skillsSection && skillsSection.getBoundingClientRect().top <= threshold) {
+        setActiveTab("skills");
+        return;
+      }
+      if (projectSection && projectSection.getBoundingClientRect().top <= threshold) {
+        setActiveTab("project");
+        return;
+      }
+      if (journeySection && journeySection.getBoundingClientRect().top <= threshold) {
+        setActiveTab("journey");
+        return;
       }
       setActiveTab("home");
     };
@@ -41,10 +47,15 @@ export function FloatingNavbar({ className = "" }: FloatingNavbarProps) {
   const handleNavClick = (id: string, href: string) => {
     setActiveTab(id);
     setMobileMenuOpen(false);
-    // Smooth scroll if element exists
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    // Smooth scroll using Lenis if available, falling back to scrollIntoView
+    const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | Element, options?: object) => void } }).lenis;
+    if (lenis) {
+      lenis.scrollTo(href, { offset: 0, duration: 1.2 });
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 

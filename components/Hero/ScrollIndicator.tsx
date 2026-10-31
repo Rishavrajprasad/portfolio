@@ -8,14 +8,19 @@ interface ScrollIndicatorProps {
 
 export function ScrollIndicator({ className = "" }: ScrollIndicatorProps) {
   const handleScrollDown = () => {
-    const target = document.getElementById("journey");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | Element, options?: object) => void } }).lenis;
+    if (lenis) {
+      lenis.scrollTo("#journey", { duration: 1.2 });
     } else {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: "smooth",
-      });
+      const target = document.getElementById("journey");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
