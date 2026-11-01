@@ -105,7 +105,7 @@ export function ContactSection() {
       bevelColor: "#fbbf24",
       annotation: {
         text: "Algorithms & problem solving.",
-        subtext: "500+ solved • Top 7%",
+        subtext: "@rishavrajprasad",
         position: "top",
       },
       onClick: () => handleOpenLink(CONTACT_DETAILS.leetcode),
@@ -209,8 +209,8 @@ export function ContactSection() {
                       k.onClick();
                     }}
                     className={`inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-md text-[10px] sm:text-xs font-mono font-bold cursor-pointer transition-all ${pressedKey === k.key
-                        ? "bg-amber-400 text-black scale-110 shadow-md ring-2 ring-amber-400"
-                        : "bg-stone-200 dark:bg-white/10 text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-white/10 hover:border-amber-400/60"
+                      ? "bg-amber-400 text-black scale-110 shadow-md ring-2 ring-amber-400"
+                      : "bg-stone-200 dark:bg-white/10 text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-white/10 hover:border-amber-400/60"
                       }`}
                   >
                     {k.key}
