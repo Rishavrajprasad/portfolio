@@ -17,6 +17,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preload critical Hero background images for instant LCP paint */}
+        <link
+          rel="preload"
+          as="image"
+          href="/day-desktop.webp"
+          type="image/webp"
+          // @ts-expect-error React 19 / DOM supports fetchPriority
+          fetchpriority="high"
+          media="(min-width: 768px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/day-mob.webp"
+          type="image/webp"
+          // @ts-expect-error React 19 / DOM supports fetchPriority
+          fetchpriority="high"
+          media="(max-width: 767px)"
+        />
+      </head>
       <body
         className="font-sans antialiased"
       >

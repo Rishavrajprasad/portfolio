@@ -16,7 +16,7 @@ export function HeroBackground({
 }: HeroBackgroundProps) {
   return (
     <div
-      className="absolute inset-0 w-full h-full overflow-hidden select-none z-0"
+      className="absolute inset-0 w-full h-full overflow-hidden select-none z-0 bg-gradient-to-b from-[#8eb3d4] via-[#c2d7e8] to-[#e4ded6] dark:from-[#090e1a] dark:via-[#101728] dark:to-[#090d16]"
       aria-hidden="false"
     >
       {/* DESKTOP SCENE CANVAS:
@@ -30,20 +30,26 @@ export function HeroBackground({
           transform: `translate(-50%, -50%) translate3d(${bgParallaxX}px, ${bgParallaxY}px, 0)`,
         }}
       >
-        {/* Day Desktop */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-100 dark:opacity-0"
-          style={{
-            backgroundImage: `url(${HERO_CONFIG.backgrounds.dayDesktop})`,
-          }}
+        {/* Day Desktop - High Priority Async Render */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_CONFIG.backgrounds.dayDesktop}
+          alt=""
+          role="presentation"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out opacity-100 dark:opacity-0 pointer-events-none"
         />
 
-        {/* Night Desktop */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-0 dark:opacity-100"
-          style={{
-            backgroundImage: `url(${HERO_CONFIG.backgrounds.nightDesktop})`,
-          }}
+        {/* Night Desktop - Deferred/Lazy */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_CONFIG.backgrounds.nightDesktop}
+          alt=""
+          role="presentation"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out opacity-0 dark:opacity-100 pointer-events-none"
         />
 
         {/* Readability Overlays */}
@@ -59,21 +65,27 @@ export function HeroBackground({
       {/* MOBILE BACKGROUND (below md) */}
       <div className="block md:hidden absolute inset-0 w-full h-full">
         {/* Day Mobile */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-100 dark:opacity-0"
-          style={{
-            backgroundImage: `url(${HERO_CONFIG.backgrounds.dayMobile})`,
-            backgroundPosition: "center 30%",
-          }}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_CONFIG.backgrounds.dayMobile}
+          alt=""
+          role="presentation"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100 dark:opacity-0 pointer-events-none"
+          style={{ objectPosition: "center 30%" }}
         />
 
         {/* Night Mobile */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-0 dark:opacity-100"
-          style={{
-            backgroundImage: `url(${HERO_CONFIG.backgrounds.nightMobile})`,
-            backgroundPosition: "center 30%",
-          }}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_CONFIG.backgrounds.nightMobile}
+          alt=""
+          role="presentation"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0 dark:opacity-100 pointer-events-none"
+          style={{ objectPosition: "center 30%" }}
         />
 
         {/* Mobile Overlays */}
